@@ -1,0 +1,35 @@
+{% extends "locationapp/base.html" %}
+{% block head%}
+<script>
+    let csrftoken = '{{ csrf_token }}';
+</script>
+{% endblock%}
+{% block head_title%}Location Share{% endblock %}
+
+{% block body %}
+{% load static %}
+<div class="earth-gif-container">
+  <img class="earth-gif" src="{% static 'locationapp/images/earth.gif' %}" alt="My image">
+</div>
+
+<div class="d-grid col-6 my-3  mx-auto">
+  <button class="btn btn-success text-center" type="button">
+  Load Your Location
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+</svg>
+  </button> 
+</div>
+
+<div class="input-group text-center">
+  <input type="number" class="form-control text-center " placeholder="Latitude" aria-label="Text input with checkbox" readonly>
+  <input type="number" class="form-control text-center " placeholder="Longitude" aria-label="Text input with checkbox" readonly>
+  
+  <div class="input-group-text gap-2">
+    Private
+    <input class="form-check-input mt-0 text-center" type="checkbox" value="" aria-label="Checkbox for following text input">
+  </div>
+  <button class="btn btn-primary text-center" type="button" id="updatelocation">Update</button>
+</div>
+
+{% endblock %}
