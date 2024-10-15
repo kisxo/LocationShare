@@ -4,4 +4,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    return HttpResponse("Hello uday")
+    return render(request, "locationapp/base.html")

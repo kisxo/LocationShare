@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+   navigator.geolocation.getCurrentPosition((position) => {
+     console.log(position)
+     console.log(position.coords.latitude)
+     console.log(position.coords.longitude)
+      let link = 'https://www.google.com/maps/search/?api=1&query='+position.coords.latitude+'%2C'+position.coords.longitude
+     document.body.innerHTML +='<a href='+link+'>Your Location</a>'
+     console.log(link)
+});
+
+  </script>
+</head>
+<body>
+  <h2>Uday Loaction app</h2>
+</body>
+</html>
