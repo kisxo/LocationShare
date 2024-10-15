@@ -1,22 +1,29 @@
-// navigator.geolocation.getCurrentPosition((position) => {
-//     console.log(position)
-//     console.log(position.coords.latitude)
-//     console.log(position.coords.longitude)
-//       let link = 'https://www.google.com/maps/search/?api=1&query='+position.coords.latitude+'%2C'+position.coords.longitude
-//     document.body.innerHTML +='<a href='+link+'>Your Location</a>'
-//     console.log(link)
-// });
+const latitude_input = document.querySelector("#latitude-input")
+const longitude_input = document.querySelector("#longitude-input")
+const isprivate_checkbox = document.querySelector("#isprivate-checkbox")
+
+function loadlocation(){
+  latitude_input.value = null;
+  longitude_input.value = null;
+  navigator.geolocation.getCurrentPosition((position) => {
+    latitude_input.value = position.coords.latitude;
+    longitude_input.value = position.coords.longitude;
+  })
+};
 
 const updatelocation_url = "http://" + window.location.host + "/updatelocation/";
 function updatelocation(){
   console.log(csrftoken)
-  navigator.geolocation.getCurrentPosition((position) => {
-    updatelocation_data = {
-      latitude : position.coords.latitude,
-      longitude : position.coords.longitude,
-      isprivate : true,
-    }
-    
+  updatelocation_data = {
+      latitude : latitude_input.value,
+      longitude : longitude_input.value,
+      isprivate : isprivate_checkbox.checked,
+  }
+  
+  latitude_input.value = null;
+  longitude_input.value =null;
+  isprivate_checkbox.checked = false;
+  
     fetch(updatelocation_url, {
       method: 'POST',
       headers: {
@@ -29,20 +36,10 @@ function updatelocation(){
     .then(response => {
       if (!response.ok) 
       {
-        throw new Error('Trade order error');
+        throw new Error('Location Update error');
       }
-      return response.json();
-    })
-    .then(order_response => {
-      if (order_response.status == 'success')
-      {
-        money.innerHTML = order_response.balance.toFixed(3);
-      }
-      // Process the newly created user data
-      console.log('Order Response Data:', order_response);
     })
     .catch(error => {
       console.error('Error:', error);
     });
-  })
 }

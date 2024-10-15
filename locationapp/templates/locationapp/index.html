@@ -13,7 +13,7 @@
 </div>
 
 <div class="d-grid col-6 my-3  mx-auto">
-  <button class="btn btn-success text-center" type="button">
+  <button class="btn btn-success text-center" type="button" onclick="loadlocation();">
   Load Your Location
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
@@ -22,14 +22,14 @@
 </div>
 
 <div class="input-group text-center">
-  <input type="number" class="form-control text-center " placeholder="Latitude" aria-label="Text input with checkbox" readonly>
-  <input type="number" class="form-control text-center " placeholder="Longitude" aria-label="Text input with checkbox" readonly>
+  <input type="number" class="form-control text-center " placeholder="Latitude"  id="latitude-input" aria-label="Text input with checkbox" readonly>
+  <input type="number" class="form-control text-center " placeholder="Longitude" id="longitude-input" aria-label="Text input with checkbox" readonly>
   
   <div class="input-group-text gap-2">
     Private
-    <input class="form-check-input mt-0 text-center" type="checkbox" value="" aria-label="Checkbox for following text input">
+    <input class="form-check-input mt-0 text-center" type="checkbox" value="" id="isprivate-checkbox"aria-label="Checkbox for following text input">
   </div>
-  <button class="btn btn-primary text-center" type="button" id="updatelocation">Update</button>
+  <button class="btn btn-primary text-center" type="button" id="updatelocation" onclick="updatelocation();">Update</button>
 </div>
 
 <table class="table table-striped my-3">
@@ -47,7 +47,7 @@
     {% for user in users %}
     <tr>
       <th scope="row">{{user.username}}</th>
-      <td>{{user.time}}</td>
+      <td>{{user.time|date:'d-M-Y h:i:s A'}}</td>
       <td class="text-center">
         <a href="https://www.google.com/maps/search/?api=1&query={{user.latitude}}%2C{{user.longitude}}">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
