@@ -6,9 +6,9 @@ import json
 
 @login_required
 def index(request):
-    users = User.objects.filter(isprivate=True)
+    users = User.objects.filter(isprivate=False)
     print(users)
-    return render(request, "locationapp/index.html")
+    return render(request, "locationapp/index.html", {"users": users})
 
 @login_required
 def updatelocation(request):
