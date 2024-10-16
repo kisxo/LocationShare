@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-p^js@9c%+ko=_rae5ro@nsfwan0&lm5366whz6!wx4y_vh#nq5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["www.magicminute.online", ".magicminute.online", ".localhost"]
 
+#csrf settings
+CSRF_TRUSTED_ORIGINS = ["https://*.magicminute.online"]
 
 # Application definition
 
