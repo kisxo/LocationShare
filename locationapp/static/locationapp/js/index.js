@@ -11,13 +11,19 @@ function loadlocation(){
   })
 };
 
-const updatelocation_url = "http://" + window.location.host + "/updatelocation/";
+const updatelocation_url = "https://" + window.location.host + "/updatelocation/";
 function updatelocation(){
   console.log(csrftoken)
   updatelocation_data = {
       latitude : latitude_input.value,
       longitude : longitude_input.value,
       isprivate : isprivate_checkbox.checked,
+  }
+  
+  if( latitude_input.value == ''|| longitude_input.value =='')
+  {
+    console.log("empty input")
+    return;
   }
   
   latitude_input.value = null;

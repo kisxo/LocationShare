@@ -16,9 +16,13 @@ def updatelocation(request):
         return HttpResponseBadRequest()
     in_updatelocation_data = json.loads(request.body.decode())
     
-    in_latitude = float(in_updatelocation_data.get('latitude', 0))
-    in_longitude = float(in_updatelocation_data.get('longitude', 0))
-    in_isprivate = in_updatelocation_data.get('isprivate', True)
+    try:
+      in_latitude = float(in_updatelocation_data.get('latitude', 0))
+      in_longitude = float(in_updatelocation_data.get('longitude', 0))
+      in_isprivate = in_updatelocation_data.get('isprivate', True)
+    except:
+      return HttpResponseBadRequest()
+      
     if in_latitude == 0 or in_longitude == 0:
       in_isprivate = True
     current_user = User.objects.get(id = request.user.id)
